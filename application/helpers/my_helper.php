@@ -29,6 +29,14 @@ function email_send($from, $to, $subject, $message) {
   }
 }
 
+function session($key, $value = '') {
+  $obj = &get_instance();
+  if ($value) {
+    $obj->session->set_userdata($key, $value);
+  }
+  return $obj->session->userdata($key);
+}
+
 function print_pre($text) {
   echo '<pre>';
   print_r($text);

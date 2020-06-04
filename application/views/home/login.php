@@ -14,7 +14,7 @@
     <?php echo form_error('email'); ?>
   </p>
   <p>Password<br>
-    <?php echo form_input('password', $this->input->post('password'), 'class="form-control form-control-sm"'); ?>
+    <?php echo form_password('password', '', 'class="form-control form-control-sm"'); ?>
     <?php echo form_error('password'); ?>
   </p>
   <p>
