@@ -1,7 +1,13 @@
 <?php $this->load->view('_head'); ?>
 
 <div class="login">
+  <img src="themes/default/img/logo.png">
   <h3>Login</h3>
+  <?php if ($message): ?>
+    <p class="alert alert-warning">
+      <?php echo $message; ?>
+    </p>
+  <?php endif; ?>
   <?php echo form_open('login'); ?>
   <p>Email<br>
     <?php echo form_input('email', $this->input->post('email'), 'class="form-control form-control-sm"'); ?>
@@ -21,7 +27,11 @@
 
 <style>
   .login {
+    padding-top: 50px;
     width: 300px;
     margin: auto;
+  }
+  .login img {
+    width: 128px;
   }
 </style>

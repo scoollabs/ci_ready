@@ -1,5 +1,13 @@
 <?php
 
+function login_form() {
+  $obj = &get_instance();
+  return array(
+    $obj->input->post('email'),
+    $obj->input->post('password'),
+  );
+}
+
 function user_form() {
   $obj = &get_instance();
   return array(
