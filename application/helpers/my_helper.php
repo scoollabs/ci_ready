@@ -1,5 +1,56 @@
 <?php
 
+
+function fcm_multiple_send($server_key, $tokens, $title, $body) {
+  $responses = array();
+  foreach ($tokens as $token) {
+    $r = fcm_send($server_key, $token, $title, $body);
+    $responses[] = array(
+      'token' => $token,
+      'response' => $r,
+    );
+  }
+  return $responses;
+}
+
+function fcm_send($server_key, $token, $title, $body) {
+  $url = "https://fcm.googleapis.com/fcm/send";
+  $headers = array(
+    'Authorization: key=' . $server_key,
+    'Content-Type: application/json'
+  );
+  $data = array(
+    'to' => $token,
+    'notification' => array(
+      'message' => $title,
+      'title' => $body,
+      'sound' => 'default',
+      'icon' => 'https://bagdok.online/public/themes/gomo/assets/img/logo.png',
+    ),
+  );
+  return api_post2($url, $data, $headers);
+}
+
+function api_post2($url, $data, $headers = array(), $username = '', $password = '') {
+  $ch = curl_init();
+
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+  if ($username && $password) {
+    curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+  }
+
+  $output = curl_exec($ch);
+
+  curl_close($ch);
+  return $output;
+}
+
 function phone($href, $text = '') {
   $text = $text ? $text : $href;
   return '<a href="tel:' . $href . '">' . $text . '</a>';
