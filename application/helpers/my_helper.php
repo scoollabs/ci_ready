@@ -241,8 +241,8 @@ function session($key, $value = '') {
   return $obj->session->userdata($key);
 }
 
-function print_pre($text) {
-  echo '<pre>';
+function print_pre($text, $pre_text = '') {
+  echo $pre_text . '<pre>';
   print_r($text);
   echo '</pre>';
 }
@@ -254,7 +254,9 @@ function trimmed_base_url() {
 function api_get($url, $data) {
   $curl = curl_init();
 
-  curl_setopt($curl, CURLOPT_URL, $url . '?' . http_build_query($data));
+  $params = $url . '?' . http_build_query($data);
+  // echo $params;
+  curl_setopt($curl, CURLOPT_URL, $params);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 //  curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
   curl_setopt($curl, CURLOPT_HTTPGET, 1);
@@ -270,7 +272,10 @@ function api_post($url, $data, $username = '', $password = '') {
 
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_POST, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  $params = http_build_query($data);
+  // echo $url . '<br>';
+  // print_pre($data);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   if ($username && $password) {
     curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
