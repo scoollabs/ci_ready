@@ -147,6 +147,26 @@ function resize_image($filename, $file_type) {
   imagedestroy($image_p);
 }
 
+function post($name, $default = '') {
+  $obj = &get_instance();
+  if ($obj->input->post($name)) {
+    return $obj->input->post($name);
+  }
+  return $default;
+}
+
+function get($name, $default = '') {
+  $obj = &get_instance();
+  if ($obj->input->get($name)) {
+    return $obj->input->get($name);
+  }
+  return $default;
+}
+
+function get_if($value, $default_value) {
+  return $value ? $value : $default_value;
+}
+
 function upload_config($company_id) {
   $upload_path = './uploads/' . $company_id;
   if (!is_dir($upload_path)) {
