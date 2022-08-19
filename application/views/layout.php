@@ -3,7 +3,7 @@
 
 <div class="container">
 
-  <img src="themes/default/img/logo.png">
+  <img src="public/themes/default/img/logo.png">
 
   <nav>
     <?php echo anchor('dashboard', 'Dashboard'); ?>

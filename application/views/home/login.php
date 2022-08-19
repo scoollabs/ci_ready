@@ -1,7 +1,7 @@
 <?php $this->load->view('_head'); ?>
 
 <div class="login">
-  <img src="themes/default/img/logo.png">
+  <img src="public/themes/default/img/logo.png">
   <h3>Login</h3>
   <?php if ($message): ?>
     <p class="alert alert-warning">
