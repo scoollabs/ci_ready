@@ -8,6 +8,19 @@ function login_form() {
   );
 }
 
+function register_form() {
+  $obj = &get_instance();
+  $user = array(
+    'email' => $obj->input->post('email'),
+  );
+  $password = $obj->input->post('password');
+  if ($password) {
+    $encrypted_password = password_hash($password, PASSWORD_BCRYPT);
+    $user['password'] = $encrypted_password;
+  }
+  return $user;
+}
+
 function user_form() {
   $obj = &get_instance();
   return array(

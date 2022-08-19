@@ -21,6 +21,9 @@
     <?php echo form_submit('submit', 'Login', 'class="btn btn-secondary btn-sm"'); ?>
     <?php echo anchor('forgot', 'Forgot password?'); ?>
   </p>
+  <p>
+    No account yet? <?php echo anchor('register', 'Register'); ?>
+  </p>
   <?php echo form_close(); ?>
 
 </div>

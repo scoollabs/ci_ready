@@ -7,6 +7,16 @@ class Home extends CI_Controller {
     $this->load->model('user_model');
   }
 
+  function register() {
+    $data['message'] = '';
+    if ($this->input->post()) {
+      $user = register_form();
+      $this->user_model->save($user);
+      redirect('login');
+    }
+    $this->load->view(get_theme() . '/home/register', $data);
+  }
+
   function login() {
     $data['message'] = '';
     if ($this->input->post()) {
