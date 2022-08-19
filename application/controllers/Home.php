@@ -22,4 +22,9 @@ class Home extends CI_Controller {
     $this->load->view(get_theme() . '/home/login', $data);
   }
 
+  function logout() {
+    $this->session->sess_destroy();
+    redirect('login');
+  }
+
 }
