@@ -30,7 +30,6 @@
 
 <style>
   .login {
-    padding-top: 50px;
     width: 300px;
     margin: auto;
   }
